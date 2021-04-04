@@ -6,7 +6,120 @@
 	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	  xmlns:f="http://xmlns.jcp.org/jsf/core"
 	  xmlns:p="http://primefaces.org/ui">
-<f:view>
-	<h:outputLabel value="Hello, world"/>
-</f:view>
+<h:head>
+	<title>Assignment 1</title>
+	<h:outputStylesheet name="primeflex.css"/>
+	<style type="text/css">
+        p {
+            line-height: 1.5;
+            margin: 0;
+        }
+        h5 {
+            font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-size: 1rem;
+            color: #495057;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+
+        body .ui-panelgrid .ui-panelgrid-cell {
+            border: none;
+        }
+
+        body .ui-panelgrid .ui-panelgrid-cell.ui-widget-header {
+            border: none;
+            text-decoration: underline;
+        }
+
+
+	</style>
+</h:head>
+<h:body>
+	<h:form>
+
+		<p:growl id="growl" showDetail="true"/>
+
+		<!-- ============== DATA TABLE ============== -->
+		<h5>Game inventory</h5>
+		<p:dataTable var="game" value="#{storeBean.gamesList}" sortMode="multiple" id="dtInventory">
+			<p:column headerText="Title" sortBy="#{game.title}" sortOrder="asc" sortPriority="1">
+				<h:outputText value="#{game.title}"/>
+			</p:column>
+
+			<p:column headerText="Quantity" sortBy="#{game.quantity}">
+				<h:outputText value="#{game.quantity}"/>
+			</p:column>
+
+			<p:column headerText="Price" sortBy="#{game.price}">
+				<h:outputText value="#{game.price}">
+					<f:convertNumber pattern="#0.00" />
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="Publisher" sortBy="#{game.publisher}">
+				<h:outputText value="#{game.publisher}"/>
+			</p:column>
+		</p:dataTable>
+
+
+
+		<!-- ============== INPUT STUFF ============== -->
+		<p:card style="margin: 2em;">
+			<p:panelGrid>
+
+				<p:row colspan="5">
+					<p:column><h:outputLabel for="txtAddTitle" value="Title"/></p:column>
+					<p:column><p:inputText id="txtAddTitle" required="true" value="#{storeBean.title}"/></p:column>
+
+					<p:column rowspan="5"><p:divider layout="vertical" type="dashed" /></p:column>
+
+					<p:column colspan="2" styleClass="ui-widget-header">Add/remove one copy of a game</p:column>
+				</p:row>
+
+
+				<p:row>
+					<p:column><p:outputLabel for="selAddPublisher" value="Publisher"/></p:column>
+					<p:column>
+						<p:selectOneMenu id="selAddPublisher" value="#{storeBean.publisher}">
+							<f:selectItems value="#{storeBean.publishers}"/>
+						</p:selectOneMenu>
+					</p:column>
+					<p:column><p:commandButton value="Add one copy" styleClass="ui-button-raised ui-button-flat"
+											   actionListener="#{storeBean.addGame}" update="dtInventory, growl" /></p:column>
+					<p:column><p:commandButton value="Remove one copy" styleClass="ui-button-raised ui-button-flat"
+											   actionListener="#{storeBean.removeGame}" update="dtInventory, growl" /></p:column>
+				</p:row>
+
+				<p:row>
+					<p:column><h:outputLabel for="txtAddPrice" value="Price"/></p:column>
+					<p:column><p:inputText id="txtAddPrice" value="#{storeBean.price}"/></p:column>
+
+					<p:column colspan="2" styleClass="ui-widget-header">
+						Add/remove multiple copies of a game
+					</p:column>
+				</p:row>
+
+				<p:row>
+					<p:column colspan="2"><p:spacer /></p:column>
+					<p:column><h:outputLabel for="txtChangeQty" value="Change in quantity"/></p:column>
+					<p:column><p:inputText id="txtChangeQty" value="#{storeBean.newQuantity}"/></p:column>
+
+				</p:row>
+
+
+				<p:row>
+					<p:column colspan="2"><p:spacer /></p:column>
+					<p:column><p:commandButton value="Add/remove multiple copies" styleClass="ui-button-raised ui-button-flat"
+											   actionListener="#{storeBean.changeQuantity}" update="dtInventory, growl" /></p:column>
+					<p:column><p:spacer /></p:column>
+				</p:row>
+
+			</p:panelGrid>
+
+
+		</p:card>
+
+	</h:form>
+</h:body>
 </html>
