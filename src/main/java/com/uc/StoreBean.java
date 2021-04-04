@@ -2,6 +2,8 @@ package com.uc;
 
 import com.uc.entities.Store;
 import com.uc.services.StoreService;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -14,12 +16,15 @@ import java.util.List;
 @Named
 public class StoreBean implements Serializable {
 
+	@Getter @Setter
 	private Long id;
 
 	@NotNull
+	@Getter @Setter
 	private String name;
 
 	@NotNull
+	@Getter @Setter
 	private String location;
 
 	@EJB

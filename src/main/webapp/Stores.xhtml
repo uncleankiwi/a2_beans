@@ -41,9 +41,9 @@
 		<p:growl id="growl" showDetail="true"/>
 
 		<!-- ============== DATA TABLE ============== -->
-		<h5>Game inventory</h5>
-		<p:dataTable var="store" value="#{storeBean.getStoreList}" sortMode="multiple" id="dtInventory">
-			<p:column headerText="Title" sortBy="#{store.id}" sortOrder="asc" sortPriority="1">
+		<h5>List of stores</h5>
+		<p:dataTable var="store" value="#{storeBean.getStoreList}" sortMode="multiple" id="dtStoreList">
+			<p:column headerText="Stores" sortBy="#{store.id}" sortOrder="asc" sortPriority="1">
 				<h:outputText value="#{store.id}"/>
 			</p:column>
 
@@ -62,51 +62,33 @@
 		<p:card style="margin: 2em;">
 			<p:panelGrid>
 
-				<p:row colspan="5">
-					<p:column><h:outputLabel for="txtAddTitle" value="Title"/></p:column>
-					<p:column><p:inputText id="txtAddTitle" required="true" value="#{storeBean.title}"/></p:column>
-
-					<p:column rowspan="5"><p:divider layout="vertical" type="dashed" /></p:column>
-
-					<p:column colspan="2" styleClass="ui-widget-header">Add/remove one copy of a game</p:column>
-				</p:row>
-
-
 				<p:row>
-					<p:column><p:outputLabel for="selAddPublisher" value="Publisher"/></p:column>
-					<p:column>
-						<p:selectOneMenu id="selAddPublisher" value="#{storeBean.publisher}">
-							<f:selectItems value="#{storeBean.publishers}"/>
-						</p:selectOneMenu>
-					</p:column>
-					<p:column><p:commandButton value="Add one copy" styleClass="ui-button-raised ui-button-flat"
-											   actionListener="#{storeBean.addGame}" update="dtInventory, growl" /></p:column>
-					<p:column><p:commandButton value="Remove one copy" styleClass="ui-button-raised ui-button-flat"
-											   actionListener="#{storeBean.removeGame}" update="dtInventory, growl" /></p:column>
+					<p:column><h:outputLabel for="txtId" value="Store ID"/></p:column>
+					<p:column><p:inputText id="txtId" value="#{storeBean.id}"/></p:column>
 				</p:row>
 
 				<p:row>
-					<p:column><h:outputLabel for="txtAddPrice" value="Price"/></p:column>
-					<p:column><p:inputText id="txtAddPrice" value="#{storeBean.price}"/></p:column>
-
-					<p:column colspan="2" styleClass="ui-widget-header">
-						Add/remove multiple copies of a game
-					</p:column>
+					<p:column><h:outputLabel for="txtName" value="Store name"/></p:column>
+					<p:column><p:inputText id="txtName" required="true" value="#{storeBean.name}"/></p:column>
 				</p:row>
 
 				<p:row>
-					<p:column colspan="2"><p:spacer /></p:column>
-					<p:column><h:outputLabel for="txtChangeQty" value="Change in quantity"/></p:column>
-					<p:column><p:inputText id="txtChangeQty" value="#{storeBean.newQuantity}"/></p:column>
-
+					<p:column><h:outputLabel for="txtLocation" value="Location"/></p:column>
+					<p:column><p:inputText id="txtLocation" required="true" value="#{storeBean.location}"/></p:column>
 				</p:row>
 
+				<p:row>
+					<p:column><p:commandButton value="Add store" styleClass="ui-button-raised ui-button-flat"
+											   actionListener="#{storeBean.addStore}" update="dtStoreList, growl" /></p:column>
+					<p:column><p:commandButton value="Load from ID" styleClass="ui-button-raised ui-button-flat"
+											   actionListener="#{storeBean.getStore}" update="dtStoreList, growl" /></p:column>
+				</p:row>
 
 				<p:row>
-					<p:column colspan="2"><p:spacer /></p:column>
-					<p:column><p:commandButton value="Add/remove multiple copies" styleClass="ui-button-raised ui-button-flat"
-											   actionListener="#{storeBean.changeQuantity}" update="dtInventory, growl" /></p:column>
-					<p:column><p:spacer /></p:column>
+					<p:column><p:commandButton value="Edit store" styleClass="ui-button-raised ui-button-flat"
+											   actionListener="#{storeBean.updateStore}" update="dtStoreList, growl" /></p:column>
+					<p:column><p:commandButton value="Delete store" styleClass="ui-button-raised ui-button-flat"
+											   actionListener="#{storeBean.deleteStore}" update="dtStoreList, growl" /></p:column>
 				</p:row>
 
 			</p:panelGrid>
