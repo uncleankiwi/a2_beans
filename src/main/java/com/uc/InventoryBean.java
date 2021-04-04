@@ -2,30 +2,44 @@ package com.uc;
 
 import com.uc.entities.Inventory;
 import com.uc.services.InventoryService;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @SessionScoped
 @Named
 public class InventoryBean implements Serializable {
+	@Getter @Setter
 	private Long id;
 
 	@NotNull
+	@Getter	@Setter
 	private String name;
 
 	@NotNull
+	@Getter	@Setter
 	private String sport;
 
 	@NotNull
+	@Getter	@Setter
 	private int quantity;
 
 	@NotNull
+	@Getter	@Setter
 	private float price;
+
+	@Getter @Setter
+	private Date addedDate;
+
+	@Getter @Setter
+	private Date updatedDate;
 
 	@EJB
 	private InventoryService inventoryService;
@@ -34,7 +48,7 @@ public class InventoryBean implements Serializable {
 		return inventoryService.getInventoryList();
 	}
 
-	public void addStore() {
+	public void addInventory() {
 		inventoryService.addStore(getFields());
 	}
 

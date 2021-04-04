@@ -7,7 +7,7 @@
 	  xmlns:f="http://xmlns.jcp.org/jsf/core"
 	  xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Assignment 1</title>
+	<title>Assignment 2 - Stores</title>
 	<h:outputStylesheet name="primeflex.css"/>
 	<style type="text/css">
         p {
@@ -43,15 +43,15 @@
 		<!-- ============== DATA TABLE ============== -->
 		<h5>List of stores</h5>
 		<p:dataTable var="store" value="#{storeBean.getStoreList}" sortMode="multiple" id="dtStoreList">
-			<p:column headerText="Stores" sortBy="#{store.id}" sortOrder="asc" sortPriority="1">
+			<p:column headerText="Store ID" sortBy="#{store.id}" sortOrder="asc" sortPriority="1">
 				<h:outputText value="#{store.id}"/>
 			</p:column>
 
-			<p:column headerText="Quantity" sortBy="#{store.name}">
+			<p:column headerText="Store name" sortBy="#{store.name}">
 				<h:outputText value="#{store.name}"/>
 			</p:column>
 
-			<p:column headerText="Publisher" sortBy="#{store.location}">
+			<p:column headerText="Location" sortBy="#{store.location}">
 				<h:outputText value="#{store.location}"/>
 			</p:column>
 		</p:dataTable>
