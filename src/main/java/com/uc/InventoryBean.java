@@ -13,7 +13,7 @@ import java.util.List;
 @SessionScoped
 @Named
 public class InventoryBean implements Serializable {
-	private long id;
+	private Long id;
 
 	@NotNull
 	private String name;

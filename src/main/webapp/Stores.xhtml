@@ -42,23 +42,17 @@
 
 		<!-- ============== DATA TABLE ============== -->
 		<h5>Game inventory</h5>
-		<p:dataTable var="game" value="#{storeBean.gamesList}" sortMode="multiple" id="dtInventory">
-			<p:column headerText="Title" sortBy="#{game.title}" sortOrder="asc" sortPriority="1">
-				<h:outputText value="#{game.title}"/>
+		<p:dataTable var="store" value="#{storeBean.getStoreList}" sortMode="multiple" id="dtInventory">
+			<p:column headerText="Title" sortBy="#{store.id}" sortOrder="asc" sortPriority="1">
+				<h:outputText value="#{store.id}"/>
 			</p:column>
 
-			<p:column headerText="Quantity" sortBy="#{game.quantity}">
-				<h:outputText value="#{game.quantity}"/>
+			<p:column headerText="Quantity" sortBy="#{store.name}">
+				<h:outputText value="#{store.name}"/>
 			</p:column>
 
-			<p:column headerText="Price" sortBy="#{game.price}">
-				<h:outputText value="#{game.price}">
-					<f:convertNumber pattern="#0.00" />
-				</h:outputText>
-			</p:column>
-
-			<p:column headerText="Publisher" sortBy="#{game.publisher}">
-				<h:outputText value="#{game.publisher}"/>
+			<p:column headerText="Publisher" sortBy="#{store.location}">
+				<h:outputText value="#{store.location}"/>
 			</p:column>
 		</p:dataTable>
 
