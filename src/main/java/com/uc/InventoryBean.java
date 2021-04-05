@@ -54,11 +54,12 @@ public class InventoryBean implements Serializable {
 
 	//read
 	public void getInventory() {
-		inventoryService.getInventory(getFields());
+		setFields(inventoryService.getInventory(getFields()));
 	}
 
 	//update
 	public void updateInventory() {
+		System.out.println(getFields());	//TODO
 		inventoryService.updateInventory(getFields());
 	}
 
@@ -77,6 +78,14 @@ public class InventoryBean implements Serializable {
 				.quantity(quantity)
 				.price(price)
 				.build();
+	}
+
+	private void setFields(Inventory inventory) {
+		this.id = inventory.getId();
+		this.name = inventory.getName();
+		this.sport = inventory.getSport();
+		this.quantity = inventory.getQuantity();
+		this.price = inventory.getPrice();
 	}
 
 	public void clear() {

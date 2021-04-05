@@ -110,16 +110,19 @@
 					<p:column><p:commandButton value="Add item" styleClass="ui-button-raised ui-button-flat"
 											   actionListener="#{inventoryBean.addInventory}" update="dtInventoryList, growl" /></p:column>
 					<p:column><p:commandButton value="Load from ID" styleClass="ui-button-raised ui-button-flat"
-											   actionListener="#{inventoryBean.getInventory}" update="dtInventoryList, growl" /></p:column>
+											   actionListener="#{inventoryBean.getInventory}" update="dtInventoryList, growl" >
+						<f:ajax /></p:commandButton></p:column>
 					<p:column><p:commandButton value="Clear" styleClass="ui-button-raised ui-button-flat"
-											   actionListener="#{inventoryBean.clear}" update="@form" /></p:column>
+											   actionListener="#{inventoryBean.clear}" update="@form" >
+						<f:ajax /></p:commandButton></p:column>
 				</p:row>
 
 				<p:row>
 					<p:column><p:commandButton value="Edit item" styleClass="ui-button-raised ui-button-flat"
 											   actionListener="#{inventoryBean.updateInventory}" update="dtInventoryList, growl" /></p:column>
 					<p:column><p:commandButton value="Delete item" styleClass="ui-button-raised ui-button-flat"
-											   actionListener="#{inventoryBean.deleteInventory}" update="dtInventoryList, growl" /></p:column>
+											   actionListener="#{inventoryBean.deleteInventory}" update="dtInventoryList, growl" >
+						<f:ajax /></p:commandButton></p:column>
 				</p:row>
 
 			</p:panelGrid>

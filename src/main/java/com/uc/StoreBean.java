@@ -40,17 +40,24 @@ public class StoreBean implements Serializable {
 
 	//read
 	public void getStore() {
-		storeService.getStore(getFields());
+		setFields(storeService.getStore(getFields()));
 	}
 
 	//update
 	public void updateStore() {
+		System.out.println(getFields()); //TODO
 		storeService.updateStore(getFields());
 	}
 
 	//delete
 	public void deleteStore() {
 		storeService.deleteStore(getFields());
+	}
+
+	private void setFields(Store store) {
+		this.id = store.getId();
+		this.name = store.getName();
+		this.location = store.getLocation();
 	}
 
 	private Store getFields() {

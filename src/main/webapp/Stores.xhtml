@@ -81,16 +81,19 @@
 					<p:column><p:commandButton value="Add store" styleClass="ui-button-raised ui-button-flat"
 											   actionListener="#{storeBean.addStore}" update="dtStoreList, growl" /></p:column>
 					<p:column><p:commandButton value="Load from ID" styleClass="ui-button-raised ui-button-flat"
-											   actionListener="#{storeBean.getStore}" update="dtStoreList, growl" /></p:column>
+											   actionListener="#{storeBean.getStore}" update="dtStoreList, growl" >
+						<f:ajax /></p:commandButton></p:column>
 					<p:column><p:commandButton value="Clear" styleClass="ui-button-raised ui-button-flat"
-											   actionListener="#{storeBean.clear}" update="@form" /></p:column>
+											   actionListener="#{storeBean.clear}" update="@form">
+						<f:ajax /></p:commandButton></p:column>
 				</p:row>
 
 				<p:row>
 					<p:column><p:commandButton value="Edit store" styleClass="ui-button-raised ui-button-flat"
 											   actionListener="#{storeBean.updateStore}" update="dtStoreList, growl" /></p:column>
 					<p:column><p:commandButton value="Delete store" styleClass="ui-button-raised ui-button-flat"
-											   actionListener="#{storeBean.deleteStore}" update="dtStoreList, growl" /></p:column>
+											   actionListener="#{storeBean.deleteStore}" update="dtStoreList, growl" >
+						<f:ajax /></p:commandButton></p:column>
 				</p:row>
 
 			</p:panelGrid>
