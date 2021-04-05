@@ -54,6 +54,8 @@ public class StoreBean implements Serializable {
 	}
 
 	private Store getFields() {
+		if (id == null) id = -1L;
+
 		return Store.builder()
 				.id(id)
 				.name(name)

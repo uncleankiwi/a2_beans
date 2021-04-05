@@ -68,6 +68,8 @@ public class InventoryBean implements Serializable {
 	}
 
 	private Inventory getFields() {
+		if (id == null) id = -1L;
+
 		return Inventory.builder()
 				.id(id)
 				.name(name)
