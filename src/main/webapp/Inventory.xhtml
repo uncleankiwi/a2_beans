@@ -44,7 +44,7 @@
 
 		<!-- ============== DATA TABLE ============== -->
 		<h5>Store inventory</h5>
-		<p:dataTable var="inventory" value="#{inventoryBean.getInventoryList}" sortMode="multiple" id="dtInventoryList">
+		<p:dataTable var="inventory" value="#{inventoryBean.inventoryList}" sortMode="multiple" id="dtInventoryList">
 			<p:column headerText="Item ID" sortBy="#{inventory.id}" sortOrder="asc" sortPriority="1">
 				<h:outputText value="#{inventory.id}"/>
 			</p:column>
@@ -88,22 +88,22 @@
 
 				<p:row>
 					<p:column><h:outputLabel for="txtName" value="Item name"/></p:column>
-					<p:column><p:inputText id="txtName" required="true" value="#{inventoryBean.name}"/></p:column>
+					<p:column><p:inputText id="txtName" value="#{inventoryBean.name}"/></p:column>
 				</p:row>
 
 				<p:row>
 					<p:column><h:outputLabel for="txtSport" value="Sport"/></p:column>
-					<p:column><p:inputText id="txtSport" required="true" value="#{inventoryBean.sport}"/></p:column>
+					<p:column><p:inputText id="txtSport" value="#{inventoryBean.sport}"/></p:column>
 				</p:row>
 
 				<p:row>
 					<p:column><h:outputLabel for="txtQuantity" value="Quantity"/></p:column>
-					<p:column><p:inputText id="txtQuantity" required="true" value="#{inventoryBean.quantity}"/></p:column>
+					<p:column><p:inputText id="txtQuantity" value="#{inventoryBean.quantity}"/></p:column>
 				</p:row>
 
 				<p:row>
 					<p:column><h:outputLabel for="txtPrice" value="Price"/></p:column>
-					<p:column><p:inputText id="txtPrice" required="true" value="#{inventoryBean.price}"/></p:column>
+					<p:column><p:inputText id="txtPrice" value="#{inventoryBean.price}"/></p:column>
 				</p:row>
 
 				<p:row>
@@ -111,6 +111,8 @@
 											   actionListener="#{inventoryBean.addInventory}" update="dtInventoryList, growl" /></p:column>
 					<p:column><p:commandButton value="Load from ID" styleClass="ui-button-raised ui-button-flat"
 											   actionListener="#{inventoryBean.getInventory}" update="dtInventoryList, growl" /></p:column>
+					<p:column><p:commandButton value="Clear" styleClass="ui-button-raised ui-button-flat"
+											   actionListener="#{inventoryBean.clear}" update="@form" /></p:column>
 				</p:row>
 
 				<p:row>

@@ -82,6 +82,8 @@
 											   actionListener="#{storeBean.addStore}" update="dtStoreList, growl" /></p:column>
 					<p:column><p:commandButton value="Load from ID" styleClass="ui-button-raised ui-button-flat"
 											   actionListener="#{storeBean.getStore}" update="dtStoreList, growl" /></p:column>
+					<p:column><p:commandButton value="Clear" styleClass="ui-button-raised ui-button-flat"
+											   actionListener="#{storeBean.clear}" update="@form" /></p:column>
 				</p:row>
 
 				<p:row>

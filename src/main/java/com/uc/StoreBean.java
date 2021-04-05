@@ -62,4 +62,10 @@ public class StoreBean implements Serializable {
 				.location(location)
 				.build();
 	}
+
+	public void clear() {
+		this.id = null;
+		this.name = "";
+		this.location = "";
+	}
 }

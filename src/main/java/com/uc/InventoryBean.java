@@ -78,4 +78,12 @@ public class InventoryBean implements Serializable {
 				.price(price)
 				.build();
 	}
+
+	public void clear() {
+		this.id = null;
+		this.name = "";
+		this.sport = "";
+		this.quantity = 0;
+		this.price = 0;
+	}
 }
