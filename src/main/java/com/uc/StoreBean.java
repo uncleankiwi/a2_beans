@@ -33,12 +33,13 @@ public class StoreBean implements Serializable {
 		return storeService.getStoreList();
 	}
 
+	//create
 	public void addStore() {
 		try {
-		storeService.addStore(getFields());
+			storeService.addStore(getFields());
 		}
 		catch (Exception e) {
-			showMessage(e.getMessage());
+			showMessage("Error adding item.\n" + e.getMessage());
 		}
 	}
 
@@ -48,27 +49,27 @@ public class StoreBean implements Serializable {
 			setFields(storeService.getStore(getFields()));
 		}
 		catch (Exception e) {
-			showMessage(e.getMessage());
+			showMessage("No item with that id exists.\n" + e.getMessage());
 		}
 	}
 
 	//update
 	public void updateStore() {
 		try {
-		storeService.updateStore(getFields());
+			storeService.updateStore(getFields());
 		}
 		catch (Exception e) {
-			showMessage(e.getMessage());
+			showMessage("No item with that id exists.\n" + e.getMessage());
 		}
 	}
 
 	//delete
 	public void deleteStore() {
 		try {
-		storeService.deleteStore(getFields());
+			storeService.deleteStore(getFields());
 		}
 		catch (Exception e) {
-			showMessage(e.getMessage());
+			showMessage("No item with that id exists.\n" + e.getMessage());
 		}
 	}
 
@@ -96,7 +97,6 @@ public class StoreBean implements Serializable {
 
 	public void showMessage(String msg) {
 		FacesMessage dialogue = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", msg);
-
 		PrimeFaces.current().dialog().showMessageDynamic(dialogue);
 	}
 }
