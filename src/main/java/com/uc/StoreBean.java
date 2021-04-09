@@ -59,7 +59,7 @@ public class StoreBean implements Serializable {
 			storeService.updateStore(getFields());
 		}
 		catch (Exception e) {
-			showMessage("No item with that id exists.\n" + e.getMessage());
+			showMessage(e.getMessage());
 		}
 	}
 
