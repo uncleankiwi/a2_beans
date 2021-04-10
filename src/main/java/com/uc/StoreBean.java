@@ -39,7 +39,7 @@ public class StoreBean implements Serializable {
 			storeService.addStore(getFields());
 		}
 		catch (Exception e) {
-			showMessage("Error adding item.\n" + e.getMessage());
+			showMessage("Error adding store:\n" + e.getMessage());
 		}
 	}
 
@@ -49,7 +49,7 @@ public class StoreBean implements Serializable {
 			setFields(storeService.getStore(getFields()));
 		}
 		catch (Exception e) {
-			showMessage("No item with that id exists.\n" + e.getMessage());
+			showMessage("Error getting store:\n" + e.getMessage());
 		}
 	}
 
@@ -59,7 +59,7 @@ public class StoreBean implements Serializable {
 			storeService.updateStore(getFields());
 		}
 		catch (Exception e) {
-			showMessage(e.getMessage());
+			showMessage("Error updating store:\n" + e.getMessage());
 		}
 	}
 
@@ -69,8 +69,13 @@ public class StoreBean implements Serializable {
 			storeService.deleteStore(getFields());
 		}
 		catch (Exception e) {
-			showMessage("No item with that id exists.\n" + e.getMessage());
+			showMessage("Error deleting store:\n" + e.getMessage());
 		}
+	}
+
+	public String viewStoreInventory(Long storeId){
+		this.id = storeId;
+		return "Inventory?faces-redirect=true&includeViewParams=true";
 	}
 
 	private void setFields(Store store) {

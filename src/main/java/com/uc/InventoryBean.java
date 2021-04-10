@@ -38,6 +38,9 @@ public class InventoryBean implements Serializable {
 	@Getter @Setter
 	private Date updatedDate;
 
+	@Getter @Setter
+	private int shopId;
+
 	@EJB
 	private InventoryService inventoryService;
 

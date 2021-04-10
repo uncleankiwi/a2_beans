@@ -48,7 +48,9 @@
 			</p:column>
 
 			<p:column headerText="Store name" sortBy="#{store.name}">
-				<h:outputText value="#{store.name}"/>
+				<p:commandLink id="ajax" action="#{storeBean.viewStoreInventory(storeBean.id)}">
+					<h:outputText value="#{store.name}"/>
+				</p:commandLink>
 			</p:column>
 
 			<p:column headerText="Location" sortBy="#{store.location}">
