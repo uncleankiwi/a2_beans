@@ -74,8 +74,7 @@ public class StoreBean implements Serializable {
 	}
 
 	public String viewStoreInventory(Long storeId){
-		this.id = storeId;
-		return "Inventory?faces-redirect=true&includeViewParams=true";
+		return "Inventory?faces-redirect=true&id=" + storeId;
 	}
 
 	private void setFields(Store store) {

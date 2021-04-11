@@ -1,14 +1,15 @@
 package com.uc;
 
 import com.uc.entities.Inventory;
+import com.uc.entities.Store;
 import com.uc.services.InventoryService;
+import com.uc.services.StoreService;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -19,7 +20,6 @@ public class InventoryBean implements Serializable {
 	@Getter @Setter
 	private Long id;
 
-	@NotEmpty
 	@Getter	@Setter
 	private String name;
 
@@ -39,13 +39,20 @@ public class InventoryBean implements Serializable {
 	private Date updatedDate;
 
 	@Getter @Setter
-	private int shopId;
+	private Long storeId;
+
+	@Getter @Setter
+	private Store store;
 
 	@EJB
 	private InventoryService inventoryService;
 
+	@EJB
+	private StoreService storeService;
+
 	public List<Inventory> getInventoryList() {
-		return inventoryService.getInventoryList();
+		initStoreInfo();
+		return inventoryService.getStoreInventory(storeId);
 	}
 
 	public void addInventory() {
@@ -59,7 +66,6 @@ public class InventoryBean implements Serializable {
 
 	//update
 	public void updateInventory() {
-		System.out.println(getFields());	//TODO
 		inventoryService.updateInventory(getFields());
 	}
 
@@ -77,6 +83,7 @@ public class InventoryBean implements Serializable {
 				.sport(sport)
 				.quantity(quantity)
 				.price(price)
+				.store(store)
 				.build();
 	}
 
@@ -86,6 +93,10 @@ public class InventoryBean implements Serializable {
 		this.sport = inventory.getSport();
 		this.quantity = inventory.getQuantity();
 		this.price = inventory.getPrice();
+	}
+
+	private void initStoreInfo() {
+		this.store = storeService.getStoreFromId(this.storeId);
 	}
 
 	public void clear() {

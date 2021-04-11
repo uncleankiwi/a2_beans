@@ -36,12 +36,14 @@
 	</style>
 
 	<f:metadata>
-		<f:viewParam name="storeId" value="#{inventoryBean.shopId}" />
+		<f:viewParam name="id" value="#{inventoryBean.storeId}" />
 	</f:metadata>
 
 </h:head>
 <h:body>
 	<h:link value="Back to stores" outcome="Stores.xhtml" />
+
+	<h:outputText value="#{inventoryBean.storeId}"/>
 
 	<h:form>
 
