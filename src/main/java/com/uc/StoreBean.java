@@ -26,12 +26,8 @@ public class StoreBean implements Serializable {
 	@Getter @Setter
 	private String location;
 
-	@EJB
+	@EJB //EJB: connect to @Remote service
 	private StoreService storeService;
-
-	public List<Store> getStoreList() {
-		return storeService.getStoreList();
-	}
 
 	//create
 	public void addStore() {
@@ -41,6 +37,11 @@ public class StoreBean implements Serializable {
 		catch (Exception e) {
 			showMessage("Error adding store:\n" + e.getMessage());
 		}
+	}
+
+	//read all
+	public List<Store> getStoreList() {
+		return storeService.getStoreList();
 	}
 
 	//read
@@ -73,16 +74,19 @@ public class StoreBean implements Serializable {
 		}
 	}
 
+	//redirect to Inventory.xhtml to view a particular store's inventory
 	public String viewStoreInventory(Long storeId){
 		return "Inventory?faces-redirect=true&id=" + storeId;
 	}
 
+	//populate view elements from object
 	private void setFields(Store store) {
 		this.id = store.getId();
 		this.name = store.getName();
 		this.location = store.getLocation();
 	}
 
+	//create object from view elements
 	private Store getFields() {
 		if (id == null) id = -1L;
 

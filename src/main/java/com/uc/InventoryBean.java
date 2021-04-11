@@ -41,22 +41,24 @@ public class InventoryBean implements Serializable {
 	@Getter @Setter
 	private Long storeId;
 
-	@Getter @Setter
+	@Setter
 	private Store store;
 
-	@EJB
+	@EJB //EJB: connect to @Remote service
 	private InventoryService inventoryService;
 
-	@EJB
+	@EJB //EJB: connect to @Remote service
 	private StoreService storeService;
 
+	//create
+	public void addInventory() {
+		inventoryService.addStore(getFields());
+	}
+
+	//read all
 	public List<Inventory> getInventoryList() {
 		initStoreInfo();
 		return inventoryService.getStoreInventory(storeId);
-	}
-
-	public void addInventory() {
-		inventoryService.addStore(getFields());
 	}
 
 	//read
@@ -74,6 +76,7 @@ public class InventoryBean implements Serializable {
 		inventoryService.deleteInventory(getFields());
 	}
 
+	//build object from view elements
 	private Inventory getFields() {
 		if (id == null) id = -1L;
 
@@ -87,6 +90,7 @@ public class InventoryBean implements Serializable {
 				.build();
 	}
 
+	//loading view elements from object
 	private void setFields(Inventory inventory) {
 		this.id = inventory.getId();
 		this.name = inventory.getName();
@@ -95,8 +99,15 @@ public class InventoryBean implements Serializable {
 		this.price = inventory.getPrice();
 	}
 
+	//loading store from jsf-view param in url
 	private void initStoreInfo() {
 		this.store = storeService.getStoreFromId(this.storeId);
+	}
+
+	//lazy retrieval of store since storeId is loaded late
+	public Store getStore() {
+		initStoreInfo();
+		return this.store;
 	}
 
 	public void clear() {

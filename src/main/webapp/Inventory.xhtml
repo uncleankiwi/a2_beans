@@ -43,14 +43,11 @@
 <h:body>
 	<h:link value="Back to stores" outcome="Stores.xhtml" />
 
-	<h:outputText value="#{inventoryBean.storeId}"/>
-
 	<h:form>
-
 		<p:growl id="growl" showDetail="true"/>
 
 		<!-- ============== DATA TABLE ============== -->
-		<h5>Store inventory</h5>
+		<h5>Store inventory for #<h:outputText value="#{inventoryBean.store.id}"/>: <h:outputText value="#{inventoryBean.store.name}"/></h5>
 		<p:dataTable var="inventory" value="#{inventoryBean.inventoryList}" sortMode="multiple" id="dtInventoryList">
 			<p:column headerText="Item ID" sortBy="#{inventory.id}" sortOrder="asc" sortPriority="1">
 				<h:outputText value="#{inventory.id}"/>
