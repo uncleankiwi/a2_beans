@@ -6,9 +6,11 @@ import com.uc.services.InventoryService;
 import com.uc.services.StoreService;
 import lombok.Getter;
 import lombok.Setter;
+import org.primefaces.PrimeFaces;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Date;
@@ -52,7 +54,12 @@ public class InventoryBean implements Serializable {
 
 	//create
 	public void addInventory() {
-		inventoryService.addStore(getFields());
+		try {
+			inventoryService.addStore(getFields());
+		}
+		catch (Exception e) {
+			showMessage("Error adding inventory item:\n" + e.getMessage());
+		}
 	}
 
 	//read all
@@ -63,17 +70,36 @@ public class InventoryBean implements Serializable {
 
 	//read
 	public void getInventory() {
-		setFields(inventoryService.getInventory(getFields()));
+		try {
+			Inventory inv = inventoryService.getInventory(getFields());
+			if (inv == null) throw new Exception("No item with that id exists.");
+			setFields(inv);
+
+		}
+		catch (Exception e) {
+			showMessage("Error getting inventory item:\n" + e.getMessage());
+		}
 	}
 
 	//update
 	public void updateInventory() {
-		inventoryService.updateInventory(getFields());
+		try {
+			inventoryService.updateInventory(getFields());
+			System.out.println(getFields());
+		}
+		catch (Exception e) {
+			showMessage("Error updating inventory item:\n" + e.getMessage());
+		}
 	}
 
 	//delete
 	public void deleteInventory() {
-		inventoryService.deleteInventory(getFields());
+		try {
+			inventoryService.deleteInventory(getFields());
+		}
+		catch (Exception e) {
+			showMessage("Error deleting inventory item:\n" + e.getMessage());
+		}
 	}
 
 	//build object from view elements
@@ -116,5 +142,10 @@ public class InventoryBean implements Serializable {
 		this.sport = "";
 		this.quantity = 0;
 		this.price = 0;
+	}
+
+	public void showMessage(String msg) {
+		FacesMessage dialogue = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", msg);
+		PrimeFaces.current().dialog().showMessageDynamic(dialogue);
 	}
 }

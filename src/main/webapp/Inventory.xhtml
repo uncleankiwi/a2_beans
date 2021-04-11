@@ -48,33 +48,39 @@
 
 		<!-- ============== DATA TABLE ============== -->
 		<h5>Store inventory for #<h:outputText value="#{inventoryBean.store.id}"/>: <h:outputText value="#{inventoryBean.store.name}"/></h5>
-		<p:dataTable var="inventory" value="#{inventoryBean.inventoryList}" sortMode="multiple" id="dtInventoryList">
-			<p:column headerText="Item ID" sortBy="#{inventory.id}" sortOrder="asc" sortPriority="1">
+		<p:dataTable var="inventory" value="#{inventoryBean.inventoryList}" id="dtInventoryList">
+			<p:column headerText="Item ID">
 				<h:outputText value="#{inventory.id}"/>
 			</p:column>
 
-			<p:column headerText="Item name" sortBy="#{inventory.name}">
+			<p:column headerText="Item name">
 				<h:outputText value="#{inventory.name}"/>
 			</p:column>
 
-			<p:column headerText="Sport" sortBy="#{inventory.sport}">
+			<p:column headerText="Sport">
 				<h:outputText value="#{inventory.sport}"/>
 			</p:column>
 
-			<p:column headerText="Quantity" sortBy="#{inventory.quantity}">
+			<p:column headerText="Quantity">
 				<h:outputText value="#{inventory.quantity}"/>
 			</p:column>
 
-			<p:column headerText="Price" sortBy="#{inventory.price}">
-				<h:outputText value="#{inventory.price}"/>
+			<p:column headerText="Price">
+				<h:outputText value="#{inventory.price}">
+					<f:convertNumber type="currency" currencySymbol="$" />
+				</h:outputText>
 			</p:column>
 
-			<p:column headerText="Date added" sortBy="#{inventory.addedDate}">
-				<h:outputText value="#{inventory.addedDate}"/>
+			<p:column headerText="Date added">
+				<h:outputText value="#{inventory.addedDate}">
+					<f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-4" />
+				</h:outputText>
 			</p:column>
 
-			<p:column headerText="Date updated" sortBy="#{inventory.updatedDate}">
-				<h:outputText value="#{inventory.updatedDate}"/>
+			<p:column headerText="Date updated">
+				<h:outputText value="#{inventory.updatedDate}">
+					<f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="GMT-4" />
+				</h:outputText>
 			</p:column>
 
 		</p:dataTable>
@@ -107,7 +113,9 @@
 
 				<p:row>
 					<p:column><h:outputLabel for="txtPrice" value="Price"/></p:column>
-					<p:column><p:inputText id="txtPrice" value="#{inventoryBean.price}"/></p:column>
+					<p:column><p:inputText id="txtPrice" value="#{inventoryBean.price}">
+						<f:convertNumber type="currency" currencySymbol="$" />
+					</p:inputText></p:column>
 				</p:row>
 
 				<p:row>

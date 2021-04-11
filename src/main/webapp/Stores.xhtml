@@ -42,18 +42,18 @@
 
 		<!-- ============== DATA TABLE ============== -->
 		<h5>List of stores</h5>
-		<p:dataTable var="store" value="#{storeBean.storeList}" sortMode="multiple" id="dtStoreList">
-			<p:column headerText="Store ID" sortBy="#{store.id}" sortOrder="asc" sortPriority="1">
+		<p:dataTable var="store" value="#{storeBean.storeList}" id="dtStoreList">
+			<p:column headerText="Store ID">
 				<h:outputText value="#{store.id}"/>
 			</p:column>
 
-			<p:column headerText="Store name" sortBy="#{store.name}">
+			<p:column headerText="Store name">
 				<p:commandLink id="ajax" action="#{storeBean.viewStoreInventory(store.id)}">
 					<h:outputText value="#{store.name}"/>
 				</p:commandLink>
 			</p:column>
 
-			<p:column headerText="Location" sortBy="#{store.location}">
+			<p:column headerText="Location">
 				<h:outputText value="#{store.location}"/>
 			</p:column>
 		</p:dataTable>

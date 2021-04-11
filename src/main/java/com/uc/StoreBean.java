@@ -47,7 +47,9 @@ public class StoreBean implements Serializable {
 	//read
 	public void getStore() {
 		try {
-			setFields(storeService.getStore(getFields()));
+			Store store = storeService.getStore(getFields());
+			if (store == null) throw new Exception("No store with that id exists.");
+			setFields(store);
 		}
 		catch (Exception e) {
 			showMessage("Error getting store:\n" + e.getMessage());
