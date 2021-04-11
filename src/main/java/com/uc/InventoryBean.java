@@ -85,7 +85,6 @@ public class InventoryBean implements Serializable {
 	public void updateInventory() {
 		try {
 			inventoryService.updateInventory(getFields());
-			System.out.println(getFields());
 		}
 		catch (Exception e) {
 			showMessage("Error updating inventory item:\n" + e.getMessage());

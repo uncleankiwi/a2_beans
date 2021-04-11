@@ -114,7 +114,7 @@
 				<p:row>
 					<p:column><h:outputLabel for="txtPrice" value="Price"/></p:column>
 					<p:column><p:inputText id="txtPrice" value="#{inventoryBean.price}">
-						<f:convertNumber type="currency" currencySymbol="$" />
+						<f:convertNumber pattern="#,###,##0.00"/>
 					</p:inputText></p:column>
 				</p:row>
 
